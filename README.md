@@ -61,22 +61,34 @@ model = cv2.dnn_DetectionModel(frozen_model, config_file)_
 
 **Here, we load the SSD MobileNet model using OpenCV’s dnn_DetectionModel, which loads both the model architecture (defined in the configuration file) and the pre-trained model weights (frozen inference graph).**
 ### 2. Load Class Labels
-classLabels = []
-file_name = 'labels.txt'
-with open(file_name, 'rt') as fpt:
-    classLabels = fpt.read().rstrip('\n').split('\n')
-print(len(classLabels))
+
+_classLabels = []_
+
+_file_name = 'labels.txt'_
+
+_with open(file_name, 'rt') as fpt:_
+
+    _classLabels = fpt.read().rstrip('\n').split('\n')_
+
+_print(len(classLabels))_
 
 **This section loads the class labels from labels.txt. Each line in the file corresponds to a class label (e.g., "person," "bicycle," "car") for objects the model can detect.**
 
 ### 3. Preprocess and Detect Objects in an Image
-_model.setInputSize(320, 320)
 
+_model.setInputSize(320, 320)_
+
+_model.setInputScale(1.0 / 127.5)_
+
+_model.setInputMean((127.5, 127.5, 127.5))_
+
+_model.setInputSwapRB(True)_
+
+model.setInputSize(320, 320)
 model.setInputScale(1.0 / 127.5)
-
 model.setInputMean((127.5, 127.5, 127.5))
+model.setInputSwapRB(True)
 
-model.setInputSwapRB(True)_
 
 **This part configures preprocessing settings for the input image, including input size, scaling, mean normalization, and channel swapping (from BGR to RGB).**
 
