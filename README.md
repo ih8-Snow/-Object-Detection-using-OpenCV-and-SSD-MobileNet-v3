@@ -29,16 +29,16 @@ Matplotlib
 ## Installation
 ### Install the required libraries:
 
-pip install opencv-python matplotlib
+    **pip install opencv-python matplotlib**
 
 
 ### Download the following model files:
 
-config_file = 'ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt'
+    config_file = 'ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt'
 
-frozen_model = 'frozen_inference_graph.pb'
+    frozen_model = 'frozen_inference_graph.pb'
 
-model = cv2.dnn_DetectionModel(frozen_model, config_file)
+    model = cv2.dnn_DetectionModel(frozen_model, config_file)
 
 ## Explanation of SSD MobileNet
 
@@ -53,11 +53,11 @@ SSD MobileNet V3 is an optimized version of the SSD MobileNet model, trained on 
 ### Below is a detailed explanation of the code and its components.
 
 ### 1. Load the Model
-_config_file = 'ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt'
+    config_file = 'ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt'
 
-frozen_model = 'frozen_inference_graph.pb'
+    frozen_model = 'frozen_inference_graph.pb'
 
-model = cv2.dnn_DetectionModel(frozen_model, config_file)_
+    model = cv2.dnn_DetectionModel(frozen_model, config_file)
 
 **Here, we load the SSD MobileNet model using OpenCV’s dnn_DetectionModel, which loads both the model architecture (defined in the configuration file) and the pre-trained model weights (frozen inference graph).**
 ### 2. Load Class Labels
