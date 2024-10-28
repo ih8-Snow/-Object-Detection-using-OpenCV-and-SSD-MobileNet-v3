@@ -3,7 +3,9 @@
 _This Python code implements real-time object detection using the Single Shot MultiBox Detector (SSD) MobileNet v3 model and OpenCV. It can identify and visualize objects from a predefined set of classes in both images and videos._
 ## Table of Contents
 **Requirements
+
 Installation
+
 Explanation of SSD MobileNet
 
 Code Walkthrough
@@ -16,8 +18,8 @@ Preprocess and Detect Objects in an Image
 
 Object Detection on Video
 
-Usage**
-
+Usage
+**
 ## Requirements
 Python 3.x
 OpenCV
