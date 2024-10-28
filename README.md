@@ -100,9 +100,9 @@ SSD MobileNet V3 is an optimized version of the SSD MobileNet model, trained on 
 
       for ClassInd, conf, boxes in zip(ClassIndex.flatten(), confidence.flatten(), bbox):
 
-       cv2.rectangle(img, boxes, (225, 0, 0), 2)
+        cv2.rectangle(img, boxes, (225, 0, 0), 2)
   
-       cv2.putText(img, classLabels[ClassInd-1], (boxes[0] + 10, boxes[1] + 40), font, 
+        cv2.putText(img, classLabels[ClassInd-1], (boxes[0] + 10, boxes[1] + 40), font, 
     
     fontScale=font_scale, color=(0, 225, 0), thickness=3)_
 
@@ -110,19 +110,15 @@ SSD MobileNet V3 is an optimized version of the SSD MobileNet model, trained on 
 
 ### 4. Object Detection on Video
       cap = cv2.VideoCapture("video1.mp4")
-
-         if not cap.isOpened():
-    
-    cap = cv2.VideoCapture(0)
-
       if not cap.isOpened():
-    raise IOError('Cannot open the file')_
+            cap = cv2.VideoCapture(0)
+      if not cap.isOpened():
+            raise IOError('Cannot open the file')_
 **This code captures video from a file (video1.mp4) or the webcam if the file isn’t available.**
 
-      while True:
-    ret, frame = cap.read()
-    
-    ClassIndex, confidence, bbox = model.detect(frame, confThreshold=0.55)
+    while True:
+        ret, frame = cap.read()
+        ClassIndex, confidence, bbox = model.detect(frame, confThreshold=0.55)
     
     if len(ClassIndex) != 0:
         for ClassInd, conf, boxes in zip(ClassIndex.flatten(), confidence.flatten(), bbox):
@@ -135,8 +131,8 @@ SSD MobileNet V3 is an optimized version of the SSD MobileNet model, trained on 
     if cv2.waitKey(2) & 0xFF == ord('q'):
         break
     
-cap.release()
-cv2.destroyAllWindows()_
+    cap.release()
+    cv2.destroyAllWindows()_
 
 **This loop continuously reads frames from the video and performs object detection on each frame. It draws bounding boxes and labels, displaying the results in real-time. The loop breaks if the 'q' key is pressed.**
 
@@ -147,10 +143,12 @@ Ensure all required files (ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt, frozen_
 
 ### Image Detection:
 To detect objects in a single image, update the file path in cv2.imread('bicycle1.jpg') to your image of choice.
+
 Run the script, and the results will display bounding boxes and labels on the detected objects within the image.
 
 ### Video Detection:
 Place the desired video file (e.g., video1.mp4) in the project directory or specify the path in cv2.VideoCapture("video1.mp4").
+
 If no file is found, the script will attempt to access your system's webcam for real-time object detection.
 
 ### Confidence Threshold Adjustment:
