@@ -27,12 +27,14 @@ Matplotlib
 ## Installation
 ### Install the required libraries:
 
-pip install opencv-python matplotlib
+**pip install opencv-python matplotlib**
 
 ### Download the following model files:
 
 _Configuration file (ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt)
+
 Frozen inference graph (frozen_inference_graph.pb)
+
 Class labels file (labels.txt), containing the labels for each object class._
 
 ## Explanation of SSD MobileNet
