@@ -27,7 +27,8 @@ Matplotlib
 ## Installation
 ### Install the required libraries:
 
-**pip install opencv-python matplotlib**
+pip install opencv-python matplotlib
+
 
 ### Download the following model files:
 
