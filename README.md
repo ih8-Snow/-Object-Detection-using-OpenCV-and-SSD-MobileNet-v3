@@ -22,7 +22,9 @@ _This Python code implements real-time object detection using the Single Shot Mu
 
 ## Requirements
 Python 3.x
+
 OpenCV
+
 Matplotlib
 ## Installation
 ### Install the required libraries:
@@ -32,11 +34,9 @@ pip install opencv-python matplotlib
 
 ### Download the following model files:
 
-_Configuration file (ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt)_
-
-_Frozen inference graph (frozen_inference_graph.pb)_
-
-_Class labels file (labels.txt), containing the labels for each object class._
+config_file = 'ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt'
+frozen_model = 'frozen_inference_graph.pb'
+model = cv2.dnn_DetectionModel(frozen_model, config_file)
 
 ## Explanation of SSD MobileNet
 
