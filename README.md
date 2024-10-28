@@ -62,13 +62,12 @@ model = cv2.dnn_DetectionModel(frozen_model, config_file)_
 **Here, we load the SSD MobileNet model using OpenCV’s dnn_DetectionModel, which loads both the model architecture (defined in the configuration file) and the pre-trained model weights (frozen inference graph).**
 ### 2. Load Class Labels
 
-
-
 classLabels = []
 file_name = 'labels.txt'
 with open(file_name, 'rt') as fpt:
     classLabels = fpt.read().rstrip('\n').split('\n')
 print(len(classLabels))
+
 
 **This section loads the class labels from labels.txt. Each line in the file corresponds to a class label (e.g., "person," "bicycle," "car") for objects the model can detect.**
 
