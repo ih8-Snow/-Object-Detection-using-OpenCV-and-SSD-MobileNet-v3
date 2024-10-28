@@ -5,12 +5,19 @@ _This Python code implements real-time object detection using the Single Shot Mu
 **Requirements
 Installation
 Explanation of SSD MobileNet
+
 Code Walkthrough
+
 Load the Model
+
 Load Class Labels
+
 Preprocess and Detect Objects in an Image
+
 Object Detection on Video
+
 Usage**
+
 ## Requirements
 Python 3.x
 OpenCV
