@@ -29,7 +29,7 @@ Matplotlib
 ## Installation
 ### Install the required libraries:
 
-    **pip install opencv-python matplotlib**
+    pip install opencv-python matplotlib
 
 
 ### Download the following model files:
@@ -62,70 +62,64 @@ SSD MobileNet V3 is an optimized version of the SSD MobileNet model, trained on 
 **Here, we load the SSD MobileNet model using OpenCV’s dnn_DetectionModel, which loads both the model architecture (defined in the configuration file) and the pre-trained model weights (frozen inference graph).**
 ### 2. Load Class Labels
 
-_classLabels = []_
+      classLabels = []
 
-_file_name = 'labels.txt'_
+      file_name = 'labels.txt'
 
-_with open(file_name, 'rt') as fpt:_
+      with open(file_name, 'rt') as fpt:
 
-    _classLabels = fpt.read().rstrip('\n').split('\n')_
+          classLabels = fpt.read().rstrip('\n').split('\n')
 
-_print(len(classLabels))_
+      print(len(classLabels))
 
 **This section loads the class labels from labels.txt. Each line in the file corresponds to a class label (e.g., "person," "bicycle," "car") for objects the model can detect.**
 
 ### 3. Preprocess and Detect Objects in an Image
 
-_model.setInputSize(320, 320)_
+      model.setInputSize(320, 320)
 
-_model.setInputScale(1.0 / 127.5)_
+      model.setInputScale(1.0 / 127.5)
 
-_model.setInputMean((127.5, 127.5, 127.5))_
+      model.setInputMean((127.5, 127.5, 127.5))
 
-_model.setInputSwapRB(True)_
-
-model.setInputSize(320, 320)
-model.setInputScale(1.0 / 127.5)
-model.setInputMean((127.5, 127.5, 127.5))
-model.setInputSwapRB(True)
-
+      model.setInputSwapRB(True)
 
 **This part configures preprocessing settings for the input image, including input size, scaling, mean normalization, and channel swapping (from BGR to RGB).**
 
-_img = cv2.imread('bicycle1.jpg')
+      img = cv2.imread('bicycle1.jpg')
 
-plt.imshow(img)
+      plt.imshow(img)
 
-plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+      plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
 
-ClassIndex, confidence, bbox = model.detect(img, confThreshold=0.5)
+      ClassIndex, confidence, bbox = model.detect(img, confThreshold=0.5)
 
-print(ClassIndex)_
+      print(ClassIndex)_
 
 **Here we read an input image, display it, and run object detection on it. The model returns detected class indices, confidence scores, and bounding box coordinates for objects detected with confidence above 50%.**
 
-_for ClassInd, conf, boxes in zip(ClassIndex.flatten(), confidence.flatten(), bbox):
+      for ClassInd, conf, boxes in zip(ClassIndex.flatten(), confidence.flatten(), bbox):
 
-    cv2.rectangle(img, boxes, (225, 0, 0), 2)
+       cv2.rectangle(img, boxes, (225, 0, 0), 2)
   
-    cv2.putText(img, classLabels[ClassInd-1], (boxes[0] + 10, boxes[1] + 40), font, 
+       cv2.putText(img, classLabels[ClassInd-1], (boxes[0] + 10, boxes[1] + 40), font, 
     
     fontScale=font_scale, color=(0, 225, 0), thickness=3)_
 
 **For each detected object, the code draws a bounding box and adds a label to the image.**
 
 ### 4. Object Detection on Video
-_cap = cv2.VideoCapture("video1.mp4")
+      cap = cv2.VideoCapture("video1.mp4")
 
-if not cap.isOpened():
+         if not cap.isOpened():
     
     cap = cv2.VideoCapture(0)
 
-if not cap.isOpened():
+      if not cap.isOpened():
     raise IOError('Cannot open the file')_
 **This code captures video from a file (video1.mp4) or the webcam if the file isn’t available.**
 
-_while True:
+      while True:
     ret, frame = cap.read()
     
     ClassIndex, confidence, bbox = model.detect(frame, confThreshold=0.55)
